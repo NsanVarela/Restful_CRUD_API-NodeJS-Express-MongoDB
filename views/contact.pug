@@ -1,0 +1,81 @@
+extends layout
+
+block content
+
+  // Navbar
+  nav.navbar.navbar-expand-lg.navbar-dark
+    a.navbar-brand(href='#') #{title}
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarText', aria-controls='navbarText', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarText.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item.active
+          a.nav-link(href='#carouselExampleControls')
+            | Technos 
+            span.sr-only (current)
+        li.nav-item
+          a#redirection.nav-link(href='#infoContainer') Tutoriel
+      span.navbar-text
+        | Navbar text with an inline element
+
+  h1.containerTitle Bienvenue #{firstname} #{lastname}
+  br
+  p #{adress} #{firstname} #{lastname} #{email}
+  p#welcome.col-12 Facilitez vos développements de sites web
+  br
+
+  //- Contact list
+  <form action="contact.js" method="GET">
+    <button type="button" onclick="showContact()" class="btn btn-info" id="getContacts">Get Contacts</button>
+    <div id="contactBloc" ></div>
+  </form>
+  br
+  br
+  <button type="button" class="btn btn-danger" id="deleteContacts">Delete contacts</button>
+
+  p#result
+
+  p#issue
+
+
+  //- Packages list
+  //- table.table.table-hover.table-dark.col-6
+  //-   thead
+  //-     tr
+  //-       th(colspan='6') Packages Innovation Starter kit
+  //-   tbody
+  //-     tr
+  //-       th(scope='row') 1
+  //-       td Java
+  //-       td Backend
+  //-       td 
+  //-       td
+  //-     tr
+  //-       th(scope='row') 2
+  //-       td JavaScript
+  //-       td Backend
+  //-       td 
+  //-       td
+  //-     tr
+  //-       th(scope='row') 3
+  //-       td React
+  //-       td Webpack
+  //-       td Node
+  //-       td MongoDB
+
+  
+
+  script(src='contact')
+  script(type='text/javascript').
+  
+    function showContact()
+    {
+      var infos = 'HELLO';
+      //- alert('OKI');
+      var infosElt = document.createElement("p");
+      infosElt.textContent = infos;
+      
+
+      document.getElementById("contactBloc").appendChild(infosElt);
+
+    }
