@@ -25,17 +25,37 @@ block content
   br
 
   //- Contact list
-  <form action="contact.js" method="GET">
-    <button type="button" onclick="showContact()" class="btn btn-info" id="getContacts">Get Contacts</button>
-    <div id="contactBloc" ></div>
-  </form>
-  br
-  br
-  <button type="button" class="btn btn-danger" id="deleteContacts">Delete contacts</button>
+  //- <form action="contact.js" method="GET">
+  //-   <button type="button" onclick="showContact()" class="btn btn-info" id="getContacts">Get Contacts</button>
+  //-   <div id="contactBloc" ></div>
+  //- </form>
+  //- br
+  //- br
+  //- <button type="button" class="btn btn-danger" id="deleteContacts">Delete contacts</button>
+  
+  table.table.table-hover.table-dark.col-6
+      tbody
+        tr
+          td  ID 
+          td  Prénom 
+          td  Nom 
+          td  Email 
+          td  Options
+        each contact in contacts
+          tr
+            td= contact._id
+            td= contact.firstname
+            td= contact.lastname
+            td= contact.email
+            td 
+              button.btn.btn-outline-info.btn-sm(onclick="location.href='/contact'", data-message='Mettre à jour') Editer
+              br
+              button.btn.btn-outline-danger.btn-sm(onclick="location.href=\"/contact/delete?_id=#{contact._id}\";" data-message='Voir les contacts') Supprimer
+              <a href="/contact/delete?_id=#{contact._id}">deleteeee</a>
 
-  p#result
 
-  p#issue
+
+
 
 
   //- Packages list
@@ -62,20 +82,3 @@ block content
   //-       td Webpack
   //-       td Node
   //-       td MongoDB
-
-  
-
-  script(src='contact')
-  script(type='text/javascript').
-  
-    function showContact()
-    {
-      var infos = 'HELLO';
-      //- alert('OKI');
-      var infosElt = document.createElement("p");
-      infosElt.textContent = infos;
-      
-
-      document.getElementById("contactBloc").appendChild(infosElt);
-
-    }

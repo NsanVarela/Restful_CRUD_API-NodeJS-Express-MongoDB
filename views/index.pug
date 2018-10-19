@@ -164,7 +164,7 @@ block content
       h1.containerTitle CONTACT
 
       #contactForm.form-row
-        form.form(action='/contact', method='POST')
+        form.form(action='/', method='POST')
           .col-12
           label(for='inputFirstName4').inputForm Prénom
             input#inputFirstName4.form-control(type='text', name='firstname', value='tata', placeholder='Prénom')
@@ -179,5 +179,8 @@ block content
             br
           .col-12
             button.btn.btn-warning(type='submit', value='Submit') Envoyer
-        
+            br
+    button.btn.btn-info(onclick="location.href='http://localhost:3000/contact'", data-message='Voir les contacts') Voir les contacts
+    br
 
+    p #{message}
