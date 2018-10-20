@@ -48,10 +48,41 @@ block content
             td= contact.lastname
             td= contact.email
             td 
-              button.btn.btn-outline-info.btn-sm(onclick="location.href='/contact'", data-message='Mettre à jour') Editer
+              //- button.btn.btn-outline-info.btn-sm(onclick="location.href='/contact'", data-message='Mettre à jour') Editer
+              <a type="button" href="/contact/delete?_id=#{contact._id}">Delete</a>
               br
-              button.btn.btn-outline-danger.btn-sm(onclick="location.href=\"/contact/delete?_id=#{contact._id}\";" data-message='Voir les contacts') Supprimer
-              <a href="/contact/delete?_id=#{contact._id}">deleteeee</a>
+              //- <a type="button" data-toggle="modal" data-target="#exampleModalCenter" href="/contact/update?_id=#{contact._id}">Edit</a>
+              <a type="button" target="_blank" href="contact/update?_id=#{contact._id}" >Edit</a>
+  
+  
+  //- #exampleModalCenter.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+  //-   .modal-dialog.modal-dialog-centered(role='document')
+  //-     .modal-content
+  //-       .modal-header
+  //-         h5#exampleModalLongTitle.modal-title UPLOAD CONTACT INFORMATIONS
+  //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
+  //-           span(aria-hidden='true') ×
+  //-       .modal-body
+  //-         #contactForm.form-row
+  //-           form.form(action='/', method='POST')
+  //-             .col-12
+  //-             label(for='id').inputForm Id
+  //-               input#inputId.form-control(type='text', name='id', value= '', placeholder='Id') 
+  //-               br
+  //-             label(for='firstName').inputForm Prénom
+  //-               input#inputFirstName.form-control(type='text', name='firstname', value= '', placeholder='Prénom') 
+  //-               br
+  //-             .col-12
+  //-             label(for='lastName').inputForm Nom
+  //-               input#inputLastName.form-control(type='text', name='lastname', value= '', placeholder='Nom')
+  //-               br
+  //-             .col-12
+  //-             label(for='email').inputForm Email
+  //-               input#inputEmail.form-control(type='email', name='email', value='', placeholder='Email')
+  //-       .modal-footer
+  //-         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+  //-         button.btn.btn-primary(type='button') Save changes
+
 
 
 
