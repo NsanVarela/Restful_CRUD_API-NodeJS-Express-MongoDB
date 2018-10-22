@@ -10,7 +10,7 @@ block content
     #navbarNav.collapse.navbar-collapse
       ul.navbar-nav
         li.nav-item.active
-          a.nav-link(href='#')
+          a.nav-link(href='/')
             | Home 
             span.sr-only (current)
         li.nav-item
@@ -18,7 +18,7 @@ block content
         li.nav-item
           a.nav-link(href='#') Contact
         li.nav-item
-          a.nav-link.disabled(href='#') Disabled
+          a.nav-link(href='#', data-toggle='modal', data-target='.bd-example-modal-sm') Admin
 
 
     //- Carousel container
@@ -184,3 +184,19 @@ block content
     br
 
     p #{message}
+
+  .modal.fade.bd-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+      .modal-dialog.modal-sm
+        .modal-content
+          form
+            .form-group
+              label(for='exampleInputEmail1') Email address
+              input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
+              //- small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+            .form-group
+              label(for='exampleInputPassword1') Password
+              input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+            .form-check
+              input#exampleCheck1.form-check-input(type='checkbox')
+              label.form-check-label(for='exampleCheck1') I am Admin
+            button.btn.btn-primary(type='submit') Login

@@ -1,26 +1,28 @@
+extends ../layout
 
-#formContainer.peerContainer.col-12
-  h1.containerTitle UPDATE CONTACT
+block content
+  #formContainer.peerContainer.col-12
+      h1.containerTitle UPDATE CONTACT
 
-  #contactForm.form-row
-    form.form(action='/', method='POST')
-      each contact in contacts
-        .col-12
-        label(for='inputFirstName4').inputForm Id
-        input(type='text', name='id', value= contact._id)
-        br
-        .col-12
-        label(for='inputLastName4').inputForm Prénom
-        input(type='text', name='firstname', value= contact.firstname)
-        br
-        .col-12
-        label(for='inputLastName4').inputForm Nom
-        input(type='text', name='lastname', value= contact.lastname)
-        .col-12
-        label(for='inputEmail4').inputForm Email
-        input(type='text', name='email', value= contact.email)
-        br
-        .col-12
-          button.btn.btn-warning(type='submit', value='Submit') Envoyer
-          br
+      #contactForm.form-row
+        form.form(action='/contact/update', method='POST')
+          each contact in contacts
+            .col-12
+            label(for='inputFirstName4', style='display:none').inputForm Id
+            input(type='text', name='_id', style='display:none', value= contact._id)
+            br
+            .col-12
+            label(for='inputLastName4').inputForm Prénom
+            input(type='text', name='firstname', value= contact.firstname)
+            br
+            .col-12
+            label(for='inputLastName4').inputForm Nom
+            input(type='text', name='lastname', value= contact.lastname)
+            .col-12
+            label(for='inputEmail4').inputForm Email
+            input(type='text', name='email', value= contact.email)
+            br
+            .col-12
+              button.btn.btn-warning(type='submit', value='Submit') Envoyer
+              br
 

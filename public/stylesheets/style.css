@@ -113,3 +113,20 @@ a {
 .table {
   margin: auto;
 }
+
+.btn-danger {
+  color: black!important;
+  width: 50px!important;
+  height: 20px!important;
+  padding: 0!important;
+  font-size: 11px!important;
+}
+
+.btn-info {
+  color: black!important;
+  width: 50px!important;
+  height: 20px!important;
+  padding: 0!important;
+  font-size: 11px!important;
+}
+

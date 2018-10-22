@@ -36,23 +36,21 @@ block content
   table.table.table-hover.table-dark.col-6
       tbody
         tr
-          td  ID 
+          td(style='display:none')  ID 
           td  Prénom 
           td  Nom 
           td  Email 
           td  Options
         each contact in contacts
           tr
-            td= contact._id
+            td(style='display:none')= contact._id
             td= contact.firstname
             td= contact.lastname
             td= contact.email
             td 
-              //- button.btn.btn-outline-info.btn-sm(onclick="location.href='/contact'", data-message='Mettre à jour') Editer
               <a type="button" href="/contact/delete?_id=#{contact._id}">Delete</a>
               br
-              //- <a type="button" data-toggle="modal" data-target="#exampleModalCenter" href="/contact/update?_id=#{contact._id}">Edit</a>
-              <a type="button" target="_blank" href="contact/update?_id=#{contact._id}" >Edit</a>
+              <a type="button" href="/contact/update?_id=#{contact._id}" >Edit</a>
   
   
   //- #exampleModalCenter.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
