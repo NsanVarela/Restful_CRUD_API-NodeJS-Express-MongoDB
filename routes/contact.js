@@ -6,6 +6,7 @@ var ObjectId = require('mongodb').ObjectId;
 var mongoUrl = 'mongodb://localhost:27017';
 var dbName = 'myproject';
 var collection = 'contact';
+var adminCollection = 'administrator';
 
 router.get('/', function(req, result, next) {
 
@@ -65,6 +66,30 @@ router.get('/update', function (req, result, next) {
 
 });
 
+router.post('/', function (req, res) {
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+
+    var dbo = db.db("myproject");
+    var myobj = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email
+    };
+    dbo.collection(collection).insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        db.close();
+    });
+  });
+
+  res.render('contact', {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email
+  });
+  
+});
 
 router.post('/update', function(req, result) {
 
@@ -94,31 +119,48 @@ router.post('/update', function(req, result) {
 
 });
 
-
-router.post('/', function (req, res) {
-
-  MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
-
-    var dbo = db.db("myproject");
+router.post('/signup', function(req, result) {
+  try {
     var myobj = {
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email
+      firstname: req.body.firstName,
+      lastname: req.body.lastName,
+      email: req.body.email,
+      password: req.body.pass,
     };
-    dbo.collection(collection).insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        // console.log("1 document inserted");
-        db.close();
-    });
-  });
+    if (req.body.pass === req.body.confirmPass) {
 
-  res.render('contact', {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email
-  });
-  
-});
+      MongoClient.connect(mongoUrl, function (err, db) {
+        if (err) throw err;
+    
+        var dbo = db.db("myproject");
+        dbo.collection(adminCollection).insertOne(myobj, function (err, res) {
+          if (err) throw err;
+          db.close();
+          result.render('index', {
+            messageLogg: 'Bonjour ' + req.body.firstName,
+            confirmlog: true
+          });
+        });
+      });
+    } else {
+      error: "Vos mots de passes doivent être identiques !"
+    };
+  } catch (e) {
+    result.render('index', {
+      messageLogg: '"Erreur de connexion à votre admin"',
+      confirmlog: false
+    });
+  }
+})
+
+router.post('/signin', function(req, result) {
+
+  var myobj = {
+    firstname: req.body.email,
+    lastname: req.body.pass,
+  };
+
+})
+
 
 module.exports = router;

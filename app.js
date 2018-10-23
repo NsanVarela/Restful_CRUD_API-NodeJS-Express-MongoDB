@@ -30,6 +30,7 @@ app.use('/', indexRouter);
 app.use('/index', indexRouter);
 app.use('/contact', contactRouter);
 app.use('/contact/update', contactRouter);
+app.use('/admin', contactRouter);
 
 // Extraction des données du body
 app.use(bodyParser.urlencoded({

@@ -23,15 +23,6 @@ block content
   p #{adress} #{firstname} #{lastname} #{email}
   p#welcome.col-12 Facilitez vos développements de sites web
   br
-
-  //- Contact list
-  //- <form action="contact.js" method="GET">
-  //-   <button type="button" onclick="showContact()" class="btn btn-info" id="getContacts">Get Contacts</button>
-  //-   <div id="contactBloc" ></div>
-  //- </form>
-  //- br
-  //- br
-  //- <button type="button" class="btn btn-danger" id="deleteContacts">Delete contacts</button>
   
   table.table.table-hover.table-dark.col-6
       tbody
@@ -51,63 +42,3 @@ block content
               <a type="button" href="/contact/delete?_id=#{contact._id}">Delete</a>
               br
               <a type="button" href="/contact/update?_id=#{contact._id}" >Edit</a>
-  
-  
-  //- #exampleModalCenter.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
-  //-   .modal-dialog.modal-dialog-centered(role='document')
-  //-     .modal-content
-  //-       .modal-header
-  //-         h5#exampleModalLongTitle.modal-title UPLOAD CONTACT INFORMATIONS
-  //-         button.close(type='button', data-dismiss='modal', aria-label='Close')
-  //-           span(aria-hidden='true') ×
-  //-       .modal-body
-  //-         #contactForm.form-row
-  //-           form.form(action='/', method='POST')
-  //-             .col-12
-  //-             label(for='id').inputForm Id
-  //-               input#inputId.form-control(type='text', name='id', value= '', placeholder='Id') 
-  //-               br
-  //-             label(for='firstName').inputForm Prénom
-  //-               input#inputFirstName.form-control(type='text', name='firstname', value= '', placeholder='Prénom') 
-  //-               br
-  //-             .col-12
-  //-             label(for='lastName').inputForm Nom
-  //-               input#inputLastName.form-control(type='text', name='lastname', value= '', placeholder='Nom')
-  //-               br
-  //-             .col-12
-  //-             label(for='email').inputForm Email
-  //-               input#inputEmail.form-control(type='email', name='email', value='', placeholder='Email')
-  //-       .modal-footer
-  //-         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-  //-         button.btn.btn-primary(type='button') Save changes
-
-
-
-
-
-
-
-  //- Packages list
-  //- table.table.table-hover.table-dark.col-6
-  //-   thead
-  //-     tr
-  //-       th(colspan='6') Packages Innovation Starter kit
-  //-   tbody
-  //-     tr
-  //-       th(scope='row') 1
-  //-       td Java
-  //-       td Backend
-  //-       td 
-  //-       td
-  //-     tr
-  //-       th(scope='row') 2
-  //-       td JavaScript
-  //-       td Backend
-  //-       td 
-  //-       td
-  //-     tr
-  //-       th(scope='row') 3
-  //-       td React
-  //-       td Webpack
-  //-       td Node
-  //-       td MongoDB

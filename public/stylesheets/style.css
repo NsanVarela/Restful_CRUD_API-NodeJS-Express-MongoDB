@@ -30,6 +30,20 @@ a {
   font-size: 40px;
 }
 
+#showContactBtn {
+    position: absolute;
+    top: 0;
+    left: 145%;
+    width: 100px!important;
+}
+#adminBtn {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  background-color: #549a82;
+  border-color: #549a82;
+}
+
 /* Carousel container */
 .peerContainer {
   background-color: #ffffff;
@@ -86,8 +100,37 @@ a {
   padding-right: 5px;
 }
 
+#confirmRecordData {
+  /* display: none; */
+  background-color: red;
+  width: 30%;
+  color: white;
+  height: 100px;
+  font-size: 20px;
+  margin: auto;
+  text-align: center;
+  padding-top: 35px;
+  border: solid 1px;
+  border-radius: 10px;
+  opacity: 0.8;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+
+#confirmLog {
+  position: absolute!important;
+  top: 15%!important;
+  left: 60%!important;
+}
+
+#confirmloggApp {
+  font-size: 12px!important;
+  font-weight: bold!important;
+  color: red!important;
+
+}
 /* Form container */
-#formContainer {}
 
 .containerTitle {
   font-weight: 700;
@@ -129,4 +172,106 @@ a {
   padding: 0!important;
   font-size: 11px!important;
 }
+.btn-primary {
+  color: black!important;
+  width: 50px!important;
+  height: 20px!important;
+  padding: 0!important;
+  font-size: 11px!important;
+}
 
+.modal-content {
+  height: 400px;
+  padding: 10px 10px;
+}
+
+/* SIGN UP */
+
+.signup {
+  display: none;
+}
+
+#signup {
+  margin-left: 16px;
+  margin-top: 5px;
+}
+
+.form-title-signup {
+  text-align: left;
+}
+
+.signUpFormInput {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 50%!important;
+}
+#signUpImg {
+  position: absolute;
+  top: 20%;
+  left: 70%;
+  width: 20%;
+}
+
+.signup-image-link {
+  /* position: absolute;
+  top: 300px;
+  left: 640px; */
+  margin-left: 60px;
+  font-size: 26px;
+}
+
+/* SIGN IN */
+
+.form-title-signin {
+  text-align: right;
+  margin-right: 50px;
+}
+
+#blockSignin {
+  margin-top: 5%;
+  margin-right: 20px;
+}
+
+.signInFormInput {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 50%!important;
+  margin-left: 50%;
+  margin-right: 10px;
+}
+
+#signInImg {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 20%;
+}
+
+.signin-image-link {
+  position: absolute;
+  top: 290px;
+  left: 610px;
+  font-size: 26px;
+}
+
+#signinBtn {
+  margin-left: 710px;
+  margin-top: 20px;
+}
+
+.form-group-remember {
+  margin-left: 50%;
+  font-size: 12px;
+}
+
+#labelRemember-me {
+  margin-left: 5px;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+      max-width: 900px!important;
+      margin: 1.75rem auto;
+
+  }
+}

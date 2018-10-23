@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+    section#signinSection.signin
+                .container
+                .signin-content
+                    .signin-form
+                    h2.form-title-signin Sign in
+                            form(method='POST')
+                                .row#blockSignin
+                                .col-12
+                                    input.form-control.signInFormInput(type='email', name='email',  id='signInEmail',placeholder='Your email')
+                                .col-12
+                                    input.form-control.signInFormInput(type='password', name='pass', id='signInPass', placeholder='Your password')
+                                .form-group.form-group-remember
+                                    input#remember-me.agree-term(type='checkbox', name='remember-me')
+                                    label#labelRemember-me.label-agree-term(for='remember-me')
+                                    span
+                                        span
+                                    | Remember me
+                                .form-group.form-button
+                                    input#signinBtn.form-submit.btn.btn-success(type='button', name='signin', value='Log in')
+                                .signup-image
+                                    figure
+                                    img(src='images/signin-image.jpg', alt='sing in image', id='signInImg')

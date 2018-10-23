@@ -8,11 +8,12 @@ var collection = 'contact';
 
 router.get('/', function (req, res) {
   res.render('index', {
-    title: 'Express'
+    title: 'Express',
+    confirm: false
   });
 });
 
-router.post('/', function (req, res) {
+router.post('/', function (req, result) {
   try {
     MongoClient.connect(mongoUrl, function (err, db) {
       if (err) throw err;
@@ -25,16 +26,21 @@ router.post('/', function (req, res) {
       dbo.collection(collection).insertOne(myobj, function (err, res) {
           if (err) throw err;
           db.close();
+          result.render('index', {
+            message: '"Vos données ont bien été enregistrées"',
+            confirm: true
+          });
       });
     })
   } catch (e) {
-    console.log("error")
+    result.render('index', {
+      message: '"Vos données n\'ont pas été enregistrées"',
+      confirm: false
+    });
   }
-  
-  res.render('index', {
-    message: '"Vos données ont bien été envoyées"'
-  });
 });
+
+
 
 
 module.exports = router;

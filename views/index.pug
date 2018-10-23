@@ -13,13 +13,21 @@ block content
           a.nav-link(href='/')
             | Home 
             span.sr-only (current)
-        li.nav-item
-          a.nav-link(href='#') Tutoriel
-        li.nav-item
-          a.nav-link(href='#') Contact
-        li.nav-item
-          a.nav-link(href='#', data-toggle='modal', data-target='.bd-example-modal-sm') Admin
-
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | Menu
+          .dropdown-menu(aria-labelledby='navbarDropdown')
+            a.dropdown-item(href='#infoContainer') Setting up
+            a.dropdown-item(href='#contactForm') Contact
+            a.dropdown-item(href='#', data-toggle='modal', data-target='.bd-example-modal-sm') Sign in / Sign up
+            .dropdown-divider
+            a.dropdown-item(href='http://localhost:3000/admin') Admin
+        #confirmlog(style='position: absolute; top: 35%; left: 70%')
+          if confirmlog
+            h2#confirmloggApp(style='font-size: 16px; font-weight: bold; color: red') #{messageLogg}
+            button#showContactBtn.btn.btn-info(onclick="location.href='http://localhost:3000/contact'", data-message='Voir les contacts') Voir les contacts
+          else
+            h2.red(style='font-size: 16px; font-weight: bold; color: green') #{messageLogg}
 
     //- Carousel container
   .row
@@ -159,44 +167,101 @@ block content
               | La commande install accepte un dossier contenant un fichier package.json.
               | Lorsque vous faites npm install à la racine de votre projet, c’est comme si vous faisiez un npm install ./ et toutes les dépendances nécessaires vont s’installer.
 
-    //- Form container
-    #formContainer.peerContainer.col-12
-      h1.containerTitle CONTACT
+  //- Form container
+  #formContainer.peerContainer.col-12
+    h1.containerTitle CONTACT
 
-      #contactForm.form-row
-        form.form(action='/', method='POST')
-          .col-12
-          label(for='inputFirstName4').inputForm Prénom
-            input#inputFirstName4.form-control(type='text', name='firstname', value='tata', placeholder='Prénom')
-            br
-          .col-12
-          label(for='inputLastName4').inputForm Nom
-            input#inputLastName4.form-control(type='text', name='lastname', value='toto', placeholder='Nom')
-            br
-          .col-12
-          label(for='inputEmail4').inputForm Email
-            input#inputEmail4.form-control(type='email', name='email', value='email@test.com', placeholder='Email')
-            br
-          .col-12
-            button.btn.btn-warning(type='submit', value='Submit') Envoyer
-            br
-    button.btn.btn-info(onclick="location.href='http://localhost:3000/contact'", data-message='Voir les contacts') Voir les contacts
-    br
+    #contactForm.form-row
+      form.form(action='/', method='POST')
+        .col-12
+        label(for='inputFirstName4').inputForm Prénom
+          input#inputFirstName4.form-control(type='text', name='firstname', value='', required, placeholder='Your firstname')
+          br
+        .col-12
+        label(for='inputLastName4').inputForm Nom
+          input#inputLastName4.form-control(type='text', name='lastname', value='', required, placeholder='Your lastname')
+          br
+        .col-12
+        label(for='inputEmail4').inputForm Email
+          input#inputEmail4.form-control(type='email', name='email', value='', required, placeholder='Your email')
+          br
+        .col-12
+          button#sendContact.btn.btn-warning(type='submit', value='Submit') Envoyer
 
-    p #{message}
+  #confirm
+    if confirm
+      h2#confirmRecordData #{message}
+    else
+      h2.red #{message}
 
-  .modal.fade.bd-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-      .modal-dialog.modal-sm
+
+  #signInModal.modal.fade.bd-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+      .modal-dialog.modal-xl
         .modal-content
-          form
-            .form-group
-              label(for='exampleInputEmail1') Email address
-              input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
-              //- small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
-            .form-group
-              label(for='exampleInputPassword1') Password
-              input#exampleInputPassword1.form-control(type='password', placeholder='Password')
-            .form-check
-              input#exampleCheck1.form-check-input(type='checkbox')
-              label.form-check-label(for='exampleCheck1') I am Admin
-            button.btn.btn-primary(type='submit') Login
+          .main
+          //- Sign up form (s'inscrire)
+          section#signupSection.signup 
+            .container
+              .signup-content
+                .signup-form
+                  h2.form-title-signup Sign up
+                  form(action='/contact/signup', method='POST')
+                    .row#blockSignup
+                      .col-12
+                        input.form-control.signUpFormInput(type='text', name='firstName', id='signUpFirstName', required, placeholder='Your firstname', value='AdminPrenom')
+                      .col-12
+                        input.form-control.signUpFormInput(type='text', name='lastName',  id='signUpLastName', required, placeholder='Your lastname', value='AdminNom')
+                      .col-12
+                        input.form-control.signUpFormInput(type='email', name='email',  id='signUpEmail', required, placeholder='Your email', value='AdminEmail@email.fr')
+                      .col-12
+                        input.form-control.signUpFormInput(type='password', name='pass', id='signUpPass', required, placeholder='Your password', value='AdminPassword')
+                      .col-12
+                        input.form-control.signUpFormInput(type='password', name='confirmPass', id='signUpRepass', required, placeholder='Repeat your password', value='AdminPassword')
+                      .form-group.form-button
+                        button#signup.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
+                      .signup-image
+                        figure
+                          img(src='images/signup-image.jpg', alt='sing up image', id='signUpImg')
+                      a#signinAccountLink.signin-image-link(href='#') I am already member
+          //- Sing in  Form (s'identifier)
+          section#signinSection.signin
+            .container
+              .signin-content
+                .signin-form
+                  h2.form-title-signin Sign in
+                          form(action='/signin', method='POST')
+                            .row#blockSignin
+                              .col-12
+                                input.form-control.signInFormInput(type='email', name='email',  id='signInEmail', required, placeholder='Your email')
+                              .col-12
+                                input.form-control.signInFormInput(type='password', name='pass', id='signInPass', required, placeholder='Your password')
+                              .form-group.form-group-remember
+                                input#remember-me.agree-term(type='checkbox', name='remember-me')
+                                label#labelRemember-me.label-agree-term(for='remember-me')
+                                  span
+                                    span
+                                  | Remember me
+                              .form-group.form-button
+                                input#signinBtn.form-submit.btn.btn-success(type='button', name='signin', value='Log in')
+                              .signup-image
+                                figure
+                                  img(src='images/signin-image.jpg', alt='sing in image', id='signInImg')
+                              .form-group
+                              a#createAccountLink.signup-image-link(href='#') Create an account
+
+
+
+          //-         .social-login
+          //-           span.social-label Or login with
+          //-           ul.socials
+          //-             li
+          //-               a(href='#')
+          //-                 i.display-flex-center.zmdi.zmdi-facebook
+          //-             li
+          //-               a(href='#')
+          //-                 i.display-flex-center.zmdi.zmdi-twitter
+          //-             li
+          //-               a(href='#')
+          //-                 i.display-flex-center.zmdi.zmdi-google
+
+  <script src="public/javascripts/script.js" ></script>
