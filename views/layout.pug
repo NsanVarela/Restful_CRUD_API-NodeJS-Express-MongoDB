@@ -9,4 +9,32 @@ html
     script(src='/js/bootstrap.min.js')
     script(src='/javascripts/script.js')
   body
+
+    //- Navbar
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand(href='#') #{title}
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarNav.collapse.navbar-collapse
+        ul.navbar-nav
+          li.nav-item.active
+            a.nav-link(href='/')
+              | Home 
+              span.sr-only (current)
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+              | Menu
+            .dropdown-menu(aria-labelledby='navbarDropdown')
+              a.dropdown-item(href='#infoContainer') Setting up
+              a.dropdown-item(href='#contactForm') Contact
+              a.dropdown-item(href='#', data-toggle='modal', data-target='.bd-example-modal-sm') Sign in / Sign up
+              .dropdown-divider
+              a.dropdown-item(href="/Admin/admin") Admin
+          #confirmlog(style='position: absolute; top: 35%; left: 70%')
+            if confirmlog
+              h2#confirmloggApp(style='font-size: 16px; font-weight: bold; color: red') #{messageLogg}
+              button#showContactBtn.btn.btn-info(onclick="location.href='http://localhost:3000/admin/contact'", data-message='Voir les contacts') Voir les contacts
+            else
+              h2.red(style='font-size: 16px; font-weight: bold; color: green') #{messageLogg}
+
     block content

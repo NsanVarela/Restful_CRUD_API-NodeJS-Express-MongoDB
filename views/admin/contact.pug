@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+
+  h1.containerTitle Bienvenue #{firstName} #{lastname}
+  br
+  p #{adress} #{firstName} #{lastname} #{email}
+  p#welcome.col-12 Facilitez vos développements de sites web
+  br
+  
+  table.table.table-hover.table-dark.col-6
+      tbody
+        tr
+          td(style='display:none')  ID 
+          td  Prénom 
+          td  Nom 
+          td  Email 
+          td  Options
+        each contact in contacts
+          tr
+            td(style='display:none')= contact._id
+            td= contact.firstname
+            td= contact.lastname
+            td= contact.email
+            td 
+              <a type="button" href="/Admin/contact/delete?_id=#{contact._id}">Delete</a>
+              br
+              <a type="button" href="/Admin/contact/update?_id=#{contact._id}" >Edit</a>

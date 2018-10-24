@@ -29,8 +29,8 @@ app.use('/css', express.static(__dirname + '/node_modules/@fortawesome/fontaweso
 app.use('/', indexRouter);
 app.use('/index', indexRouter);
 app.use('/contact', contactRouter);
-app.use('/contact/update', contactRouter);
-app.use('/admin', contactRouter);
+app.use('/admin/contact', contactRouter);
+app.use('/admin/update', contactRouter);
 
 // Extraction des données du body
 app.use(bodyParser.urlencoded({

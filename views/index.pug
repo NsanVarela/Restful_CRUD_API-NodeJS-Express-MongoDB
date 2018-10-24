@@ -2,34 +2,7 @@ extends layout
 
 block content
 
-  //- Navbar
-  nav.navbar.navbar-expand-lg.navbar-light.bg-light
-    a.navbar-brand(href='#') #{title}
-    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
-      span.navbar-toggler-icon
-    #navbarNav.collapse.navbar-collapse
-      ul.navbar-nav
-        li.nav-item.active
-          a.nav-link(href='/')
-            | Home 
-            span.sr-only (current)
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-            | Menu
-          .dropdown-menu(aria-labelledby='navbarDropdown')
-            a.dropdown-item(href='#infoContainer') Setting up
-            a.dropdown-item(href='#contactForm') Contact
-            a.dropdown-item(href='#', data-toggle='modal', data-target='.bd-example-modal-sm') Sign in / Sign up
-            .dropdown-divider
-            a.dropdown-item(href='http://localhost:3000/admin') Admin
-        #confirmlog(style='position: absolute; top: 35%; left: 70%')
-          if confirmlog
-            h2#confirmloggApp(style='font-size: 16px; font-weight: bold; color: red') #{messageLogg}
-            button#showContactBtn.btn.btn-info(onclick="location.href='http://localhost:3000/contact'", data-message='Voir les contacts') Voir les contacts
-          else
-            h2.red(style='font-size: 16px; font-weight: bold; color: green') #{messageLogg}
-
-    //- Carousel container
+  //- Carousel container
   .row
     #carouselContainer.peerContainer.col-12
       p.containerTitle INNOVATION STARTER KIT
@@ -208,15 +181,16 @@ block content
                   form(action='/contact/signup', method='POST')
                     .row#blockSignup
                       .col-12
-                        input.form-control.signUpFormInput(type='text', name='firstName', id='signUpFirstName', required, placeholder='Your firstname', value='AdminPrenom')
+                        input.form-control.signUpFormInput(type='text', name='firstName', id='signUpFirstName', required, placeholder='Your firstname', value='')
                       .col-12
-                        input.form-control.signUpFormInput(type='text', name='lastName',  id='signUpLastName', required, placeholder='Your lastname', value='AdminNom')
+                        input.form-control.signUpFormInput(type='text', name='lastName',  id='signUpLastName', required, placeholder='Your lastname', value='')
                       .col-12
-                        input.form-control.signUpFormInput(type='email', name='email',  id='signUpEmail', required, placeholder='Your email', value='AdminEmail@email.fr')
+                        input.form-control.signUpFormInput(type='email', name='email',  id='signUpEmail', required, placeholder='Your email', value='')
                       .col-12
-                        input.form-control.signUpFormInput(type='password', name='pass', id='signUpPass', required, placeholder='Your password', value='AdminPassword')
+                        input.form-control.signUpFormInput(type='password', name='password', id='signUpPass', required, placeholder='Your password', value='')
                       .col-12
-                        input.form-control.signUpFormInput(type='password', name='confirmPass', id='signUpRepass', required, placeholder='Repeat your password', value='AdminPassword')
+                        input.form-control.signUpFormInput(type='password', name='confirmPassword', id='signUpConfirmPass', required, placeholder='Repeat your password', value='')
+                        span#messagePassword
                       .form-group.form-button
                         button#signup.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
                       .signup-image
@@ -229,12 +203,14 @@ block content
               .signin-content
                 .signin-form
                   h2.form-title-signin Sign in
-                          form(action='/signin', method='POST')
+                          form(action='/contact/signin', method='GET')
                             .row#blockSignin
                               .col-12
-                                input.form-control.signInFormInput(type='email', name='email',  id='signInEmail', required, placeholder='Your email')
+                                input.form-control.signUpFormInput(type='text', name='firstName', id='signInFirstName', required, placeholder='Your firstname', value='Daniel')
                               .col-12
-                                input.form-control.signInFormInput(type='password', name='pass', id='signInPass', required, placeholder='Your password')
+                                input.form-control.signInFormInput(type='email', name='emailSignIn',  id='signInEmail', value='daniel@russo.fr', required, placeholder='Your email')
+                              .col-12
+                                input.form-control.signInFormInput(type='password', name='passwordSignIn', id='signInPass', value='daniel' required, placeholder='Your password')
                               .form-group.form-group-remember
                                 input#remember-me.agree-term(type='checkbox', name='remember-me')
                                 label#labelRemember-me.label-agree-term(for='remember-me')
@@ -242,14 +218,20 @@ block content
                                     span
                                   | Remember me
                               .form-group.form-button
-                                input#signinBtn.form-submit.btn.btn-success(type='button', name='signin', value='Log in')
+                                //- <a type="button" href="#">Log in</a>
+                                input#signinBtn.form-submit.btn.btn-success(type='submit', name='signin', value='Login')
                               .signup-image
                                 figure
                                   img(src='images/signin-image.jpg', alt='sing in image', id='signInImg')
                               .form-group
                               a#createAccountLink.signup-image-link(href='#') Create an account
 
-
+      #adminConfirm
+      if adminConfirm
+        h2#adminConfirm #{messageSignin}
+      else
+        h2.red #{messageSignin}
+  
 
           //-         .social-login
           //-           span.social-label Or login with
