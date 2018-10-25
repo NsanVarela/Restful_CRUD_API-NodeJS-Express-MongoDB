@@ -31,6 +31,7 @@ app.use('/index', indexRouter);
 app.use('/contact', contactRouter);
 app.use('/admin/contact', contactRouter);
 app.use('/admin/update', contactRouter);
+app.use('/admin', contactRouter);
 
 // Extraction des données du body
 app.use(bodyParser.urlencoded({
@@ -50,5 +51,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

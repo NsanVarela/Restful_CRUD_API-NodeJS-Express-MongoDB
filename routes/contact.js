@@ -33,7 +33,7 @@ router.get('/signin', function(req, result) {
     email: req.query.emailSignIn,
     password: req.query.passwordSignIn,
   };
-  console.log(myobj);
+  // console.log(myobj);
   MongoClient.connect(mongoUrl, function (err, db) {
     if (err) throw err;
 
@@ -49,9 +49,35 @@ router.get('/signin', function(req, result) {
   });
 });
 
-// router.get('/Admin/admin', function(req, result, next) {
-//   console.log('admin enter');
-// });
+router.get('/admin', function(req, result, next) {
+  // console.log('admin enter');
+  var myobj = {
+    email: req.query.email,
+    password: req.query.password,
+  };
+  // console.log(myobj);
+  MongoClient.connect(mongoUrl, function (err, db) {
+    if (err) throw err;
+
+    var dbo = db.db("myproject");
+    dbo.collection(adminCollection).findOne({myobj}, function(err, res) {
+      if (err) throw err;
+      db.close();
+      result.render('admin/admin', {
+      });
+    });
+    
+    // dbo.collection(collection).find({}).limit(20).toArray(function (err, res) {
+    //   if (err) throw err;
+    //   db.close();
+    //   result.render('admin/contact', {
+    //     messageLogg: 'Bonjour ' + req.body.firstName,
+    //     confirmlog: true,
+    //     contacts: res
+    //   });
+    // });
+  });
+});
 
 router.get('/update', function (req, result, next) {
 
