@@ -118,6 +118,7 @@ a {
   left: 35%;
 }
 
+
 #confirmLog {
   position: absolute!important;
   top: 15%!important;
@@ -187,14 +188,21 @@ a {
 
 /* SIGN UP */
 
+#signUpTitle {
+  text-align: center;
+}
 .signup {
   display: none;
 }
 
-#signup {
+#signupBtn {
   margin-left: 16px;
   margin-top: 5px;
 }
+/* #signup {
+  margin-left: 16px;
+  margin-top: 5px;
+} */
 
 .form-title-signup {
   text-align: left;
@@ -213,15 +221,18 @@ a {
 }
 
 .signup-image-link {
-  /* position: absolute;
+  position: absolute;
   top: 300px;
-  left: 640px; */
+  left: 0px;
   margin-left: 60px;
   font-size: 26px;
 }
 
 /* SIGN IN */
 
+#signInTitle {
+  text-align: center;
+}
 .form-title-signin {
   text-align: right;
   margin-right: 50px;
@@ -305,6 +316,24 @@ a {
   margin-top: 25px;
 }
 
+#usernameInputAdmin {
+  margin-left: 120px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+#passwordInputAdmin {
+  margin-left: 120px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+#submitInputAdmin {
+  margin-left: 120px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  width: 50%;
+}
 
 /************************************************************/
 @media (min-width: 576px) {

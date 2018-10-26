@@ -8,6 +8,7 @@ block content
       p.containerTitle INNOVATION STARTER KIT
     |
     p#welcome.col-12 Créez en quelques étapes un site Web (front-end et back-end) avec Node JS et #{title}.
+    p #{username}
 
     #carouselExampleControls.carousel.slide(data-ride='carousel')
       .carousel-inner
@@ -177,22 +178,23 @@ block content
             .container
               .signup-content
                 .signup-form
-                  h2.form-title-signup Sign up
-                  form(action='/contact/signup', method='POST')
+                  h2#signUpTitle Sign up
+                  form.form-title-signup(action='/contact/signup', method='POST')
                     .row#blockSignup
                       .col-12
-                        input.form-control.signUpFormInput(type='text', name='firstName', id='signUpFirstName', required, placeholder='Your firstname', value='')
+                        input.form-control.signUpFormInput(type='text', name='firstName', id='signUpFirstName', placeholder='Your firstname', value='', required)
                       .col-12
-                        input.form-control.signUpFormInput(type='text', name='lastName',  id='signUpLastName', required, placeholder='Your lastname', value='')
+                        input.form-control.signUpFormInput(type='text', name='lastName',  id='signUpLastName', placeholder='Your lastname', value='', required)
                       .col-12
-                        input.form-control.signUpFormInput(type='email', name='email',  id='signUpEmail', required, placeholder='Your email', value='')
+                        input.form-control.signUpFormInput(type='email', name='email',  id='signUpEmail', placeholder='Your email', value='', required)
                       .col-12
-                        input.form-control.signUpFormInput(type='password', name='password', id='signUpPass', required, placeholder='Your password', value='')
+                        input.form-control.signUpFormInput(type='password', name='password', id='signUpPass', placeholder='Your password', value='', required)
                       .col-12
-                        input.form-control.signUpFormInput(type='password', name='confirmPassword', id='signUpConfirmPass', required, placeholder='Repeat your password', value='')
+                        input.form-control.signUpFormInput(type='password', name='confirmPassword', id='signUpConfirmPass', placeholder='Repeat your password', value='', required)
                         span#messagePassword
                       .form-group.form-button
-                        button#signup.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
+                        input#signupBtn.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
+                        //- button#signup.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
                       .signup-image
                         figure
                           img(src='images/signup-image.jpg', alt='sing up image', id='signUpImg')
@@ -202,15 +204,15 @@ block content
             .container
               .signin-content
                 .signin-form
-                  h2.form-title-signin Sign in
-                          form(action='/contact/signin', method='GET')
+                  h2#signInTitle Sign in
+                          form.form-title-signin(action='/contact/signin', method='GET')
                             .row#blockSignin
                               .col-12
-                                input.form-control.signUpFormInput(type='text', name='firstName', id='signInFirstName', required, placeholder='Your firstname', value='Daniel')
+                                input.form-control.signInFormInput(type='text', name='firstName', id='signInFirstName', placeholder='Your firstname', value='', required)
                               .col-12
-                                input.form-control.signInFormInput(type='email', name='emailSignIn',  id='signInEmail', value='daniel@russo.fr', required, placeholder='Your email')
+                                input.form-control.signInFormInput(type='email', name='emailSignIn',  id='signInEmail', value='', placeholder='Your email', required)
                               .col-12
-                                input.form-control.signInFormInput(type='password', name='passwordSignIn', id='signInPass', value='daniel' required, placeholder='Your password')
+                                input.form-control.signInFormInput(type='password', name='passwordSignIn', id='signInPass', value='', placeholder='Your password', required)
                               .form-group.form-group-remember
                                 input#remember-me.agree-term(type='checkbox', name='remember-me')
                                 label#labelRemember-me.label-agree-term(for='remember-me')
@@ -231,19 +233,3 @@ block content
         h2#adminConfirm #{messageSignin}
       else
         h2.red #{messageSignin}
-  
-
-          //-         .social-login
-          //-           span.social-label Or login with
-          //-           ul.socials
-          //-             li
-          //-               a(href='#')
-          //-                 i.display-flex-center.zmdi.zmdi-facebook
-          //-             li
-          //-               a(href='#')
-          //-                 i.display-flex-center.zmdi.zmdi-twitter
-          //-             li
-          //-               a(href='#')
-          //-                 i.display-flex-center.zmdi.zmdi-google
-
-  <script src="public/javascripts/script.js" ></script>

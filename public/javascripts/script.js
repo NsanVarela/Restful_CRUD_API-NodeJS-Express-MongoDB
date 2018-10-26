@@ -18,7 +18,8 @@ $(document).ready(function () {
             left: "35%",
         });
     });
-
+    $("#confirmRecordData").fadeOut(5000);
+    
     $('#createAccountLink').on('click', function () {
         $('#signinSection').hide();
         $('#signupSection').show();

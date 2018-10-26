@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, result) {
   try {
-    MongoClient.connect(mongoUrl, function (err, db) {
+    MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function (err, db) {
       if (err) throw err;
       var dbo = db.db(dbName);
       var myobj = {
@@ -39,8 +39,6 @@ router.post('/', function (req, result) {
     });
   }
 });
-
-
 
 
 module.exports = router;

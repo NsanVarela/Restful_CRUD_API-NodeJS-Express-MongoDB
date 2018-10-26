@@ -29,13 +29,18 @@ html
               a.dropdown-item(href='#contactForm') Contact
               a.dropdown-item(href='#', data-toggle='modal', data-target='.bd-example-modal-sm') Sign in / Sign up
               .dropdown-divider
-              //- a.dropdown-item(href='/admin/admin') Admin
               a.dropdown-item(href='http://localhost:3000/admin/admin') Admin
           #confirmlog(style='position: absolute; top: 35%; left: 70%')
             if confirmlog
-              h2#confirmloggApp(style='font-size: 16px; font-weight: bold; color: red') #{messageLogg}
+              h2#confirmloggApp(style='font-size: 16px; font-weight: bold; color: green') #{messageLogg}
               button#showContactBtn.btn.btn-info(onclick="location.href='http://localhost:3000/admin/contact'", data-message='Voir les contacts') Voir les contacts
             else
-              h2.red(style='font-size: 16px; font-weight: bold; color: green') #{messageLogg}
+              h2.red(style='font-size: 16px; font-weight: bold; color: red') #{messageLogg}
+          #loggedAdmin(style='position: absolute; top: 30%; left: 43%;') 
+            if confirmlog
+              h2.green(style='font-size: 16px; font-weight: bold; color: green') #{messageAdmin}
+            else
+              h2.red(style='font-size: 16px; font-weight: bold; color: red') #{messageAdmin}
+            
 
     block content

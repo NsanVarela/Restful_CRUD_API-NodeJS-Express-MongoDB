@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var indexRouter = require('./routes/index');
 var contactRouter = require('./routes/contact');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -31,7 +32,8 @@ app.use('/index', indexRouter);
 app.use('/contact', contactRouter);
 app.use('/admin/contact', contactRouter);
 app.use('/admin/update', contactRouter);
-app.use('/admin', contactRouter);
+app.use('/admin', adminRouter);
+app.use('.admin/success', adminRouter);
 
 // Extraction des données du body
 app.use(bodyParser.urlencoded({
@@ -51,7 +53,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 
 module.exports = app;
