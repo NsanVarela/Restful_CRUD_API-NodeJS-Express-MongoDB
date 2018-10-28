@@ -61,19 +61,19 @@ passport.use(new LocalStrategy(
 
 /*  MÉTHODES  */
 router.get('/admin', function(req, result, next) {
-    console.log('>>>>>   >>>>> GET ADMIN !!! >>>>>   >>>>>');
+    // console.log('>>>>>   >>>>> GET ADMIN !!! >>>>>   >>>>>');
     result.render('admin/admin', {
     });
 });
 
 router.get('/success', function(req, res) {
-    console.log('>>>>>   >>>>> SUCCES !!! >>>>>   >>>>>');
+    // console.log('>>>>>   >>>>> SUCCES !!! >>>>>   >>>>>');
     res.send("Welcome "+req.query.username+"!!", {
     });
 });
 
 router.get('/error', function(req, res) {
-    console.log('>>>>>   >>>>> ERROR LOGGIN !!! >>>>>   >>>>>');
+    // console.log('>>>>>   >>>>> ERROR LOGGIN !!! >>>>>   >>>>>');
     res.send("error logging in", {
     });
 });
@@ -87,7 +87,7 @@ router.post('/', passport.authenticate('local', { failureRedirect: '/error' }), 
             confirmlog: true
         });
     } catch(e) {
-        console.log('>>>>>   >>>>> ERROR !!! >>>>>   >>>>>');
+        // console.log('>>>>>   >>>>> ERROR !!! >>>>>   >>>>>');
         res.render('admin/admin', {
             messageAdmin: '"Erreur de connexion à votre compte Admin"',
             confirmlog: false

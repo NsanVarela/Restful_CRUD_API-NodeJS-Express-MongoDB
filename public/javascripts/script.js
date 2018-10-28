@@ -28,7 +28,7 @@ $(document).ready(function () {
     $('#signinAccountLink').on('click', function () {
         $('#signupSection').hide();
         $('#signinSection').show();
-    })
+    });
 
     $(function() {
 
@@ -49,13 +49,13 @@ $(document).ready(function () {
         })
     });
 
-    $('#signUpPass, #signUpConfirmPass').on('keyup', function () {
-        if ($('#signUpPass').val() == $('#signUpConfirmPass').val()) {
-          $('#messagePassword').html('Your passwords match').css('color', 'green');
-        } else 
-          $('#messagePassword').html('Your passwords don\' t match').css('color', 'red');
-      });
+    // $('#signUpPass, #signUpConfirmPass').on('keyup', function () {
+    //     if ($('#signUpPass').val() == $('#signUpConfirmPass').val()) {
+    //       $('#messagePassword').html('Your passwords match').css('color', 'green');
+    //     } else 
+    //       $('#messagePassword').html('Your passwords don\' t match').css('color', 'red');
+    //   });
 
-
+    
 
 })

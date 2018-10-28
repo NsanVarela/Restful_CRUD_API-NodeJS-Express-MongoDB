@@ -194,7 +194,6 @@ block content
                         span#messagePassword
                       .form-group.form-button
                         input#signupBtn.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
-                        //- button#signup.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
                       .signup-image
                         figure
                           img(src='images/signup-image.jpg', alt='sing up image', id='signUpImg')
@@ -220,7 +219,6 @@ block content
                                     span
                                   | Remember me
                               .form-group.form-button
-                                //- <a type="button" href="#">Log in</a>
                                 input#signinBtn.form-submit.btn.btn-success(type='submit', name='signin', value='Login')
                               .signup-image
                                 figure
@@ -228,8 +226,8 @@ block content
                               .form-group
                               a#createAccountLink.signup-image-link(href='#') Create an account
 
-      #adminConfirm
-      if adminConfirm
-        h2#adminConfirm #{messageSignin}
-      else
-        h2.red #{messageSignin}
+      //- #adminConfirm
+      //- if adminConfirm
+      //-   h2#adminConfirm #{messageSignin}
+      //- else
+      //-   h2.red #{messageSignin}

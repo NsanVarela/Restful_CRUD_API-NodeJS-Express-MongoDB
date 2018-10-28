@@ -145,6 +145,11 @@ a {
   margin: auto;
 }
 
+#sendContact {
+  position: absolute;
+  top: 0;
+  left: 520px;
+}
 
 .inputForm {
   width: 100%;
@@ -333,6 +338,17 @@ a {
   margin-bottom: 10px;
   margin-top: 0px;
   width: 50%;
+}
+
+#adminManageBlock {
+  width: 500px;
+  height: 350px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  border-radius: 5px;
+  padding: 10px 10px;
 }
 
 /************************************************************/
