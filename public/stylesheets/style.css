@@ -1,5 +1,5 @@
 body {
-  padding-top: 50px;
+  padding-top: 30px;
   padding-bottom: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -23,6 +23,7 @@ a {
   font-size: 24px;
   margin: 25px 25px;
   width: 100%;
+  color: white;
 }
 
 #welcome.welcomeTitle {
@@ -31,11 +32,12 @@ a {
 }
 
 #showContactBtn {
-    position: absolute;
-    top: 0;
-    left: 145%;
-    width: 100px!important;
+  position: absolute;
+  top: 0;
+  left: 145%;
+  width: 100px !important;
 }
+
 #adminBtn {
   position: absolute;
   top: 30%;
@@ -118,19 +120,19 @@ a {
   left: 35%;
 }
 
-
 #confirmLog {
   position: absolute!important;
-  top: 15%!important;
-  left: 60%!important;
+  top: 55%!important;
+  left: 40%!important;
 }
 
 #confirmloggApp {
-  font-size: 12px!important;
-  font-weight: bold!important;
-  color: red!important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  color: red !important;
 
 }
+
 /* Form container */
 
 .containerTitle {
@@ -138,6 +140,7 @@ a {
   font-size: 40px;
   text-align: center;
   margin: 30px 10px;
+  color: white;
 }
 
 #contactForm {
@@ -164,26 +167,27 @@ a {
 }
 
 .btn-danger {
-  color: black!important;
-  width: 50px!important;
-  height: 20px!important;
-  padding: 0!important;
-  font-size: 11px!important;
+  color: black !important;
+  width: 50px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  font-size: 11px !important;
 }
 
 .btn-info {
-  color: black!important;
-  width: 50px!important;
-  height: 20px!important;
-  padding: 0!important;
-  font-size: 11px!important;
+  color: black !important;
+  width: 50px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  font-size: 11px !important;
 }
+
 .btn-primary {
-  color: black!important;
-  width: 50px!important;
-  height: 20px!important;
-  padding: 0!important;
-  font-size: 11px!important;
+  color: black !important;
+  width: 50px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  font-size: 11px !important;
 }
 
 .modal-content {
@@ -196,6 +200,7 @@ a {
 #signUpTitle {
   text-align: center;
 }
+
 .signup {
   display: none;
 }
@@ -204,6 +209,7 @@ a {
   margin-left: 16px;
   margin-top: 5px;
 }
+
 /* #signup {
   margin-left: 16px;
   margin-top: 5px;
@@ -216,8 +222,9 @@ a {
 .signUpFormInput {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 50%!important;
+  width: 50% !important;
 }
+
 #signUpImg {
   position: absolute;
   top: 20%;
@@ -238,6 +245,7 @@ a {
 #signInTitle {
   text-align: center;
 }
+
 .form-title-signin {
   text-align: right;
   margin-right: 50px;
@@ -251,7 +259,7 @@ a {
 .signInFormInput {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 50%!important;
+  width: 50% !important;
   margin-left: 50%;
   margin-right: 10px;
 }
@@ -284,9 +292,9 @@ a {
   margin-left: 5px;
 }
 
-#adminContainer {
+.adminContainer {
   background-color: #333333;
-  height: 100vh;
+  height: 100vh!important;
 }
 
 #loginAdminBlock {
@@ -351,11 +359,20 @@ a {
   padding: 10px 10px;
 }
 
+#editButton {
+  color: rgb(54, 54, 133)!important;
+  font-size: 10px!important;
+}
+
+#deleteButton {
+  color: rgb(190, 79, 79)!important;
+  font-size: 10px!important;
+}
 /************************************************************/
 @media (min-width: 576px) {
   .modal-dialog {
-      max-width: 900px!important;
-      margin: 1.75rem auto;
+    max-width: 900px !important;
+    margin: 1.75rem auto;
 
   }
 }

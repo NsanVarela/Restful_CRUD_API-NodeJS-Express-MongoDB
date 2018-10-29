@@ -2,13 +2,13 @@ extends ../layout
 
 block content
 
-    section#adminContainer
+    section.adminContainer
         .container
         if confirmlog
             #adminManageBlock
                 h2.formTitleAdmin ADMIN BOARD
                 p.descriptionLogin Choose your management option
-                #confirmlog(style='position: absolute; top: 35%; left: 70%')
+                #confirmlog(style='position: absolute; top: 55%; left: 40%')
                     if confirmlog
                         h2#confirmloggApp(style='font-size: 16px; font-weight: bold; color: green') #{messageLogg}
                         button#showContactBtn.btn.btn-info(onclick="location.href='http://localhost:3000/admin/contact'", data-message='Voir les contacts') Voir les contacts
