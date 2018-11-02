@@ -225,9 +225,9 @@ block content
                                   img(src='images/signin-image.jpg', alt='sing in image', id='signInImg')
                               .form-group
                               a#createAccountLink.signup-image-link(href='#') Create an account
-
-      //- #adminConfirm
-      //- if adminConfirm
-      //-   h2#adminConfirm #{messageSignin}
-      //- else
-      //-   h2.red #{messageSignin}
+            
+      #adminConfirm
+      if adminConfirm
+        h2#adminConfirm #{messageSignin}
+      else
+        h2.red #{messageSignin}

@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('passport');
 var app = express();
 var router = express.Router();
 
@@ -7,14 +8,17 @@ var ObjectId = require('mongodb').ObjectId;
 var mongoUrl = 'mongodb://localhost:27017';
 var dbName = 'myproject';
 var collection = 'contact';
-var adminCollection = 'administrator';
+var adminCollection = 'userInfo';
+var bodyParser = require('body-parser');
 
 
 /* MÉTHODES GET */
 
-router.get('/', function(req, result, next) {
+router.get('/', function (req, result, next) {
 
-  MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function(err, db) {
+  MongoClient.connect(mongoUrl, {
+    useNewUrlParser: true
+  }, function (err, db) {
     if (err) throw err;
     const dbo = db.db(dbName);
 
@@ -30,19 +34,23 @@ router.get('/', function(req, result, next) {
 
 });
 
-router.get('/signin', function(req, result) {
-  
+router.get('/signin', function (req, result) {
+
   var myobj = {
     firstname: req.query.firstName,
     email: req.query.emailSignIn,
     password: req.query.passwordSignIn,
   };
 
-  MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function(err, db) {
+  MongoClient.connect(mongoUrl, {
+    useNewUrlParser: true
+  }, function (err, db) {
     if (err) throw err;
     var dbo = db.db("myproject");
 
-    dbo.collection(adminCollection).findOne({myobj}, function(err, res) {
+    dbo.collection(adminCollection).findOne({
+      myobj
+    }, function (err, res) {
       if (err) throw err;
       db.close();
       result.render('index', {
@@ -58,9 +66,13 @@ router.get('/signin', function(req, result) {
 router.get('/update', function (req, result, next) {
 
   var idToFind = req.query._id;
-  var objToFind = {_id: new ObjectId(idToFind)};
+  var objToFind = {
+    _id: new ObjectId(idToFind)
+  };
 
-  MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function(err, db) {
+  MongoClient.connect(mongoUrl, {
+    useNewUrlParser: true
+  }, function (err, db) {
     if (err) throw err;
     const dbo = db.db(dbName);
 
@@ -79,13 +91,17 @@ router.get('/update', function (req, result, next) {
 router.get('/delete', function (req, result) {
 
   var idToFind = req.query._id;
-  var objToFind = {_id: new ObjectId(idToFind)};
-  
-  MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function(err, db) {
+  var objToFind = {
+    _id: new ObjectId(idToFind)
+  };
+
+  MongoClient.connect(mongoUrl, {
+    useNewUrlParser: true
+  }, function (err, db) {
     if (err) throw err;
     const dbo = db.db(dbName);
 
-    dbo.collection(collection).deleteOne(objToFind, function(err, res) {
+    dbo.collection(collection).deleteOne(objToFind, function (err, res) {
       if (err) throw err;
       db.close();
     });
@@ -94,19 +110,21 @@ router.get('/delete', function (req, result) {
       if (err) throw err;
       db.close();
       result.render('admin/contact', {
-          contacts: res
+        contacts: res
       });
     });
 
   });
-  
+
 });
 
 /* MÉTHODES POST */
 
 router.post('/', function (req, res) {
 
-  MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function(err, db) {
+  MongoClient.connect(mongoUrl, {
+    useNewUrlParser: true
+  }, function (err, db) {
     if (err) throw err;
     var dbo = db.db("myproject");
     var myobj = {
@@ -116,8 +134,8 @@ router.post('/', function (req, res) {
     };
 
     dbo.collection(collection).insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        db.close();
+      if (err) throw err;
+      db.close();
     });
 
   });
@@ -127,24 +145,30 @@ router.post('/', function (req, res) {
     lastname: req.body.lastname,
     email: req.body.email
   });
-  
+
 });
 
-router.post('/update', function(req, result) {
+router.post('/update', function (req, result) {
 
   var idToFind = req.body._id;
-  var objToFind = {_id: new ObjectId(idToFind)};
-  var objUpdated = { $set : {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email
-  }};
+  var objToFind = {
+    _id: new ObjectId(idToFind)
+  };
+  var objUpdated = {
+    $set: {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email
+    }
+  };
 
-  MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function(err, db) {
+  MongoClient.connect(mongoUrl, {
+    useNewUrlParser: true
+  }, function (err, db) {
     if (err) throw err;
     const dbo = db.db(dbName);
 
-    dbo.collection(collection).updateOne(objToFind, objUpdated, function(err, res) {
+    dbo.collection(collection).updateOne(objToFind, objUpdated, function (err, res) {
       if (err) throw err;
       db.close();
     });
@@ -161,7 +185,7 @@ router.post('/update', function(req, result) {
 
 });
 
-router.post('/signup', function(req, result) {
+router.post('/signup', function (req, result) {
 
   try {
     var myobj = {
@@ -171,20 +195,22 @@ router.post('/signup', function(req, result) {
       password: req.body.password,
     };
 
-      MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function(err, db) {
+    MongoClient.connect(mongoUrl, {
+      useNewUrlParser: true
+    }, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("myproject");
+
+      dbo.collection(adminCollection).insertOne(myobj, function (err, res) {
         if (err) throw err;
-        var dbo = db.db("myproject");
-
-        dbo.collection(adminCollection).insertOne(myobj, function (err, res) {
-          if (err) throw err;
-          db.close();
-          result.render('index', {
-            messageLogg: 'Bonjour ' + req.body.firstName,
-            confirmlog: true
-          });
+        db.close();
+        result.render('index', {
+          messageLogg: 'Bonjour ' + req.body.firstName,
+          confirmlog: true
         });
-
       });
+
+    });
 
   } catch (e) {
     result.render('index', {

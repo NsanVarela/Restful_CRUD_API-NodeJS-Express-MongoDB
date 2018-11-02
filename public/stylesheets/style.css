@@ -121,9 +121,9 @@ a {
 }
 
 #confirmLog {
-  position: absolute!important;
-  top: 55%!important;
-  left: 40%!important;
+  position: absolute !important;
+  top: 55% !important;
+  left: 40% !important;
 }
 
 #confirmloggApp {
@@ -294,7 +294,7 @@ a {
 
 .adminContainer {
   background-color: #333333;
-  height: 100vh!important;
+  height: 100vh !important;
 }
 
 #loginAdminBlock {
@@ -329,6 +329,12 @@ a {
   margin-top: 25px;
 }
 
+#firstnameInputAdmin {
+  margin-left: 120px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
 #usernameInputAdmin {
   margin-left: 120px;
   margin-bottom: 10px;
@@ -360,14 +366,26 @@ a {
 }
 
 #editButton {
-  color: rgb(54, 54, 133)!important;
-  font-size: 10px!important;
+  color: rgb(54, 54, 133) !important;
+  font-size: 10px !important;
 }
 
 #deleteButton {
-  color: rgb(190, 79, 79)!important;
-  font-size: 10px!important;
+  color: rgb(190, 79, 79) !important;
+  font-size: 10px !important;
 }
+
+.rowUsers {
+  background-color: powderblue;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rowInfoUsers {
+  text-align: center;
+  font-size: 13px;
+}
+
 /************************************************************/
 @media (min-width: 576px) {
   .modal-dialog {

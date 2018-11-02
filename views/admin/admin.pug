@@ -20,8 +20,10 @@ block content
                 p.descriptionLogin Please sign in to get access
                 form(action='/admin', method='POST')
                     div
-                        input#usernameInputAdmin.form-control.signUpFormInput(type='text', name='username', placehorder='admin', required)
+                        input#firstnameInputAdmin.form-control.signUpFormInput(type='text', name='firstname', placeholder='firstname', required)
                     div
-                        input#passwordInputAdmin.form-control.signUpFormInput(type='password', name='password', placehorder='admin', required)
+                        input#usernameInputAdmin.form-control.signUpFormInput(type='text', name='username', placeholder='email', required)
+                    div
+                        input#passwordInputAdmin.form-control.signUpFormInput(type='password', name='password', placeholder='password', required)
                     div
                         input#submitInputAdmin.form-submit.btn.btn-success(type='submit', value='Submit')
