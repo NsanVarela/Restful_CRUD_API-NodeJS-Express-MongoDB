@@ -1,16 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var MongoClient = require('mongodb').MongoClient;
-var mongoUrl = 'mongodb://localhost:27017';
-var dbName = 'myproject';
-var collection = 'contact';
+const MongoClient = require('mongodb').MongoClient;
+const mongoUrl = 'mongodb://localhost:27017';
+const dbName = 'myproject';
+const collection = 'contact';
 
 router.get('/', function (req, res) {
-  res.render('index', {
-    title: 'Express',
-    confirm: false
-  });
+  res.render('index');
 });
 
 router.post('/', function (req, result) {

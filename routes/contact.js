@@ -1,15 +1,15 @@
-var express = require('express');
-var passport = require('passport');
-var app = express();
-var router = express.Router();
+const express = require('express');
+const passport = require('passport');
+const app = express();
+const router = express.Router();
 
-var MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectId;
-var mongoUrl = 'mongodb://localhost:27017';
-var dbName = 'myproject';
-var collection = 'contact';
-var adminCollection = 'userInfo';
-var bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
+const mongoUrl = 'mongodb://localhost:27017';
+const dbName = 'myproject';
+const collection = 'contact';
+const adminCollection = 'userInfo';
+const bodyParser = require('body-parser');
 
 
 /* MÉTHODES GET */
