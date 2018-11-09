@@ -2,6 +2,15 @@ const express = require('express');
 const passport = require('passport');
 const app = express();
 const router = express.Router();
+const {
+  findContactWithLimit,
+  findOneContact,
+  updateContact,
+  deleteContact,
+  addContact,
+  updatedContact,
+  registerUserInfo
+} = require('../repository/contact-repository');
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
@@ -12,173 +21,86 @@ const userInfo = 'userInfo';
 const bodyParser = require('body-parser');
 
 router.get('/', function (req, result, next) {
-  MongoClient.connect(mongoUrl, {
-    useNewUrlParser: true
-  }, function (err, db) {
-    if (err) throw err;
-    const dbo = db.db(dbName);
-    dbo.collection(contact).find({}).limit(20).toArray(function (err, res) {
-      if (err) throw err;
-      db.close();
-      result.render('admin/contact', {
-        contacts: res
-      });
-    });
-  });
+  findContactWithLimit(20).then(val => {
+    result.render('admin/contact', {
+    contacts: val
+    })
+  })
 });
 
 router.get('/signin', function (req, result) {
-  var myobj = {
+  const contact = {
     firstname: req.query.firstName,
     email: req.query.emailSignIn,
     password: req.query.passwordSignIn,
   };
-  MongoClient.connect(mongoUrl, {
-    useNewUrlParser: true
-  }, function (err, db) {
-    if (err) throw err;
-    var dbo = db.db("myproject");
-    dbo.collection(userInfo).findOne(
-      myobj,
-      function (err, res) {
-        console.log(res);
-        if (err) throw err;
-        db.close();
-        result.render('index', {
-          messageLogg: 'Bonjour ' + res.firstName,
-          confirmlog: true
-        });
-      });
-  });
+  findOneContact(contact).then(val=> {
+    result.render('index', {
+      messageLogg: 'Bonjour ' + val.firstName,
+      confirmlog: true
+    })
+  })
 });
 
 router.get('/user', function (req, result, next) {
-  var idToFind = req.query._id;
-  var objToFind = {
-    _id: new ObjectId(idToFind)
-  };
-  MongoClient.connect(mongoUrl, {
-    useNewUrlParser: true
-  }, function (err, db) {
-    if (err) throw err;
-    const dbo = db.db(dbName);
-    dbo.collection(contact).find(objToFind).toArray(function (err, res) {
-      if (err) throw err;
-      db.close();
-      result.render('admin/update', {
-        contacts: res
-      });
-    });
-  });
+  const user = { _id: new ObjectId(req.query._id)};
+  updateContact(user).then(val=> {
+    result.render('admin/update', {
+      contacts: val
+    })
+  })
 });
 
 router.get('/delete', function (req, result) {
-  var idToFind = req.query._id;
-  var objToFind = {
-    _id: new ObjectId(idToFind)
-  };
-  MongoClient.connect(mongoUrl, {
-    useNewUrlParser: true
-  }, function (err, db) {
-    if (err) throw err;
-    const dbo = db.db(dbName);
-    dbo.collection(contact).deleteOne(objToFind, function (err, res) {
-      if (err) throw err;
-      db.close();
-    });
-    dbo.collection(contact).find({}).limit(20).toArray(function (err, res) {
-      if (err) throw err;
-      db.close();
-      result.render('admin/contact', {
-        contacts: res
-      });
-    });
-  });
+  const user = { _id: new ObjectId(req.query._id)};
+  deleteContact(user).then(val=> {
+    result.render('admin/contact', {
+      contacts: val
+    })
+  })
 });
 
 router.post('/', function (req, res) {
-  MongoClient.connect(mongoUrl, {
-    useNewUrlParser: true
-  }, function (err, db) {
-    if (err) throw err;
-    var dbo = db.db(dbName);
-    var myobj = {
-      firstname: req.body.firstName,
-      lastname: req.body.lastname,
-      email: req.body.email
-    };
-    dbo.collection(contact).insertOne(myobj, function (err, res) {
-      if (err) throw err;
-      db.close();
-      res.render('admin/contact', {
-        firstname: req.body.firstName,
-        lastname: req.body.lastname,
-        email: req.body.email
-      });
-    });
-  });
+  const user = {
+    firstname: req.body.firstName,
+    lastname: req.body.lastname,
+    email: req.body.email
+  };
+  addContact(user).then(val => {
+    res.render('admin/contact', {
+      contacts: val
+    })
+  })
 });
 
 router.post('/update', function (req, result) {
-  var idToFind = req.body._id;
-  var objToFind = {
-    _id: new ObjectId(idToFind)
-  };
-  var objUpdated = {
-    $set: {
+  const user = { _id: new ObjectId(req.body._id)};
+  const userUpdated = { $set: {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email
     }
   };
-  MongoClient.connect(mongoUrl, {
-    useNewUrlParser: true
-  }, function (err, db) {
-    if (err) throw err;
-    const dbo = db.db(dbName);
-    dbo.collection(contact).updateOne(objToFind, objUpdated, function (err, res) {
-      if (err) throw err;
-      db.close();
-    });
-    dbo.collection(contact).find({}).limit(10).toArray(function (err, res) {
-      if (err) throw err;
-      db.close();
-      result.render('admin/contact', {
-        contacts: res
-      });
-    });
-  });
+  updatedContact(user, userUpdated).then(val => {
+    result.render('admin/contact', {
+      contacts: val
+    })
+  })
 });
 
 router.post('/signup', function (req, result) {
-  try {
-    var myobj = {
-      firstname: req.body.firstName,
-      lastname: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-    };
-    MongoClient.connect(mongoUrl, {
-      useNewUrlParser: true
-    }, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db(dbName);
-      dbo.collection(userInfo).insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        db.close();
-        result.render('index', {
-          messageLogg: 'Bonjour ' + req.body.firstName,
-          confirmlog: true
-        });
-      });
-
-    });
-  } catch (e) {
+  const contact = {
+    firstname: req.body.firstName,
+    lastname: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
+  };
+  registerUserInfo(contact).then(val => {
     result.render('index', {
-      messageLogg: '"Erreur de connexion à votre compte"',
-      confirmlog: false
-    });
-  }
-})
+      messageLogg: 'Bonjour ' + val.firstName,
+      confirmlog: true
+    })
+  })
+});
 
 module.exports = router;

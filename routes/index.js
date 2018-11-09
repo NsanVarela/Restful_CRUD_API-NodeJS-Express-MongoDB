@@ -12,7 +12,9 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, result) {
   try {
-    MongoClient.connect(mongoUrl, { useNewUrlParser: true }, function (err, db) {
+    MongoClient.connect(mongoUrl, {
+      useNewUrlParser: true
+    }, function (err, db) {
       if (err) throw err;
       var dbo = db.db(dbName);
       var myobj = {
@@ -21,12 +23,12 @@ router.post('/', function (req, result) {
         email: req.body.email
       };
       dbo.collection(collection).insertOne(myobj, function (err, res) {
-          if (err) throw err;
-          db.close();
-          result.render('index', {
-            message: '"Vos données ont bien été enregistrées"',
-            confirm: true
-          });
+        if (err) throw err;
+        db.close();
+        result.render('index', {
+          message: '"Vos données ont bien été enregistrées"',
+          confirm: true
+        });
       });
     })
   } catch (e) {
