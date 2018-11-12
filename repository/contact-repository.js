@@ -3,7 +3,6 @@ const ObjectId = require('mongodb').ObjectId;
 const mongoUrl = 'mongodb://localhost:27017';
 const dbName = 'myproject';
 const contact = 'contact';
-const userInfo = 'userInfo';
 
 const findContactWithLimit = function (limit) {
     return new Promise((resolve, reject) => {
@@ -19,14 +18,14 @@ const findContactWithLimit = function (limit) {
     });
 }
 
-const findOneContact = function (contact) {
+const findOneContact = function (user) {
     return new Promise((resolve, reject) => {
         MongoClient.connect(mongoUrl, {
             useNewUrlParser: true
         }, function (err, db) {
             const dbo = db.db(dbName);
-            dbo.collection(userInfo).findOne(
-                contact,
+            dbo.collection(contact).findOne(
+                user,
                 function (err, res) {
                     db.close();
                     resolve(res);
@@ -35,41 +34,28 @@ const findOneContact = function (contact) {
     });
 }
 
-const updateContact = function (user) {
-    return new Promise((resolve, reject) => {
-        MongoClient.connect(mongoUrl, {
-            useNewUrlParser: true
-          }, function (err, db) {
-            const dbo = db.db(dbName);
-            dbo.collection(contact).find(user).toArray(function (err, res) {
-              db.close();
-              resolve(res);
-            });
-          });
-    });
-}
-
 const deleteContact = function (user) {
     return new Promise((resolve, reject) => {
         MongoClient.connect(mongoUrl, {
             useNewUrlParser: true
-          }, function (err, db) {
+        }, function (err, db) {
             const dbo = db.db(dbName);
             dbo.collection(contact).deleteOne(user, function (err, res) {
-              db.close();
+                db.close();
             });
             dbo.collection(contact).find({}).limit(20).toArray(function (err, res) {
-              db.close();
-              resolve(res);
+                db.close();
+                resolve(res);
             })
-          });
+        });
     });
 }
 
 const addContact = function (contact) {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, db) 
-        {
+        MongoClient.connect(mongoUrl, {
+            useNewUrlParser: true
+        }, function (err, db) {
             const dbo = db.db(dbName);
             dbo.collection(contact).insertOne(user, function (err, res) {
                 db.close();
@@ -79,10 +65,11 @@ const addContact = function (contact) {
     });
 }
 
-const updatedContact = function (user, userUpdated) {
+const updateContact = function (user, userUpdated) {
     return new Promise((resolve, reject) => {
-        MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, db)
-        {
+        MongoClient.connect(mongoUrl, {
+            useNewUrlParser: true
+        }, function (err, db) {
             const dbo = db.db(dbName);
             dbo.collection(contact).updateOne(user, userUpdated, function (err, res) {
                 db.close();
@@ -95,23 +82,12 @@ const updatedContact = function (user, userUpdated) {
     });
 }
 
-const registerUserInfo = function (contact) {
-    return new Promise((resolve, reject) => {
-        MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, db) {
-            var dbo = db.db(dbName);
-            dbo.collection(userInfo).insertOne(contact, function (err, res) {
-                db.close();
-                resolve(res);
-            });
-        });
-    });
-}
+
 module.exports = {
     findContactWithLimit,
     findOneContact,
     updateContact,
     deleteContact,
     addContact,
-    updatedContact,
-    registerUserInfo
+    
 };

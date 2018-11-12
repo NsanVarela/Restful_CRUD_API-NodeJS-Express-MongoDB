@@ -4,7 +4,7 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const mongoUrl = 'mongodb://localhost:27017';
 const dbName = 'myproject';
-const collection = 'contact';
+const contact = 'contact';
 
 router.get('/', function (req, res) {
   res.render('index');
@@ -15,15 +15,13 @@ router.post('/', function (req, result) {
     MongoClient.connect(mongoUrl, {
       useNewUrlParser: true
     }, function (err, db) {
-      if (err) throw err;
       var dbo = db.db(dbName);
       var myobj = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email
       };
-      dbo.collection(collection).insertOne(myobj, function (err, res) {
-        if (err) throw err;
+      dbo.collection(contact).insertOne(myobj, function (err, res) {
         db.close();
         result.render('index', {
           message: '"Vos données ont bien été enregistrées"',

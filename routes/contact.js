@@ -8,9 +8,12 @@ const {
   updateContact,
   deleteContact,
   addContact,
-  updatedContact,
-  registerUserInfo
+  updatedContact
 } = require('../repository/contact-repository');
+const {
+  findOneUserInfo,
+  registerUserInfo
+} = require('../repository/user-info-repository');
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
@@ -23,7 +26,7 @@ const bodyParser = require('body-parser');
 router.get('/', function (req, result, next) {
   findContactWithLimit(20).then(val => {
     result.render('admin/contact', {
-    contacts: val
+      contacts: val
     })
   })
 });
@@ -34,17 +37,27 @@ router.get('/signin', function (req, result) {
     email: req.query.emailSignIn,
     password: req.query.passwordSignIn,
   };
-  findOneContact(contact).then(val=> {
+  //findOneUserInfo
+  findOneUserInfo(contact).then(val => {
     result.render('index', {
       messageLogg: 'Bonjour ' + val.firstName,
       confirmlog: true
     })
   })
+  // findOneContact(contact).then(val => {
+  //   result.render('index', {
+  //     messageLogg: 'Bonjour ' + val.firstName,
+  //     confirmlog: true
+  //   })
+  // })
 });
 
 router.get('/user', function (req, result, next) {
-  const user = { _id: new ObjectId(req.query._id)};
-  updateContact(user).then(val=> {
+  const user = {
+    _id: new ObjectId(req.query._id)
+  };
+  findOneContact(user).then(val => {
+    console.log("val=", val);
     result.render('admin/update', {
       contacts: val
     })
@@ -52,8 +65,10 @@ router.get('/user', function (req, result, next) {
 });
 
 router.get('/delete', function (req, result) {
-  const user = { _id: new ObjectId(req.query._id)};
-  deleteContact(user).then(val=> {
+  const user = {
+    _id: new ObjectId(req.query._id)
+  };
+  deleteContact(user).then(val => {
     result.render('admin/contact', {
       contacts: val
     })
@@ -74,14 +89,17 @@ router.post('/', function (req, res) {
 });
 
 router.post('/update', function (req, result) {
-  const user = { _id: new ObjectId(req.body._id)};
-  const userUpdated = { $set: {
+  const user = {
+    _id: new ObjectId(req.body._id)
+  };
+  const userUpdated = {
+    $set: {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email
     }
   };
-  updatedContact(user, userUpdated).then(val => {
+  updateContact(user, userUpdated).then(val => {
     result.render('admin/contact', {
       contacts: val
     })
