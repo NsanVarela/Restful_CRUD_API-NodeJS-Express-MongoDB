@@ -24,4 +24,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         else
           h2.red(style='font-size: 16px; font-weight: bold; color: red') #{messageAdmin}
 
-  include form.pug
+    
+              
+        #adminConfirm
+        if adminConfirm
+          h2#adminConfirm #{messageSignin}
+        else
+          h2.red #{messageSignin}

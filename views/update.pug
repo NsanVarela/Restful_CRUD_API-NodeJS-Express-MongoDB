@@ -6,7 +6,6 @@ block content
 
       #contactForm.form-row
         form.form(action='/contact/update', method='POST')
-          each contact in contacts
             .col-12
             label(for='inputFirstName4', style='display:none').inputForm Id
             input(type='text', name='_id', style='display:none', value= contact._id)

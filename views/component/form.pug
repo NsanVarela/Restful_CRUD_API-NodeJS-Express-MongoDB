@@ -1,60 +1,11 @@
+- var noDisplay=null
+
 mixin field(args)
   input.form-control(
-    type=args.type ? args.type : ''
-    name=args.name ? args.name : null
-    value=args.value ? args.value : null
-    placeholder=args.placeholder ? args.placeholder : null
-    class=args.class
-    required=isRequired
-    id=args.id ? args.id : null)
-
-mixin button(args)
-  button.btn(
-    type=args.type ? args.type : 'button'
-    class=attributes.class ? attributes.class : null)= args.buttonlabel
-mixin modal
-  #signInModal.modal.fade.bd-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-    .modal-dialog.modal-xl
-      .modal-content
-        .main
-        //- Sign up form (s'inscrire)
-        section#signupSection.signup 
-          .container
-            .signup-content
-              .signup-form
-                h2#signUpTitle Sign up
-                form.form-title-signup(action='/contact/signup', method='POST')
-                  .row#blockSignup
-                    +field({ class: 'signUpFormInput col-6', id: 'signUpFirstName', name: 'firstName', type: 'text', placeholder: 'Your firstname', required })
-                    +field({ class: 'signUpFormInput col-6', id: 'signUpLastName', name: 'lastName', type: 'text', placeholder: 'Your lastname', required })
-                    +field({ class: 'signUpFormInput col-6', id: 'signUpEmail', name: 'email', type: 'email', placeholder: 'Your email', required })
-                    +field({ class: 'signUpFormInput col-6', id: 'signUpPass', name: 'password', type: 'password', placeholder: 'Your password', required })
-                    +field({ class: 'signUpFormInput col-6', id: 'signUpConfirmPass', name: 'confirmPassword', type: 'password', placeholder: 'Repeat your password', required })
-                    +field({ class: 'signUpFormInput col-6 btn-info', id: 'signUpBtn', name: 'signup', type: 'submit' })
-                  .signup-image
-                    figure
-                      img(src='../images/signup-image.jpg', alt='sing up image', id='signUpImg')
-                  a#signinAccountLink.signin-image-link(href='#') I am already member
-        //- Sing in  Form (s'identifier)
-        section#signinSection.signin
-          .container
-            .signin-content
-              .signin-form
-                h2#signInTitle Sign in
-                br
-                form.form-title-signin(action='/contact', method='GET')
-                  .row#blockSignin
-                    +field({ class: 'signInFormInput col-8', id: 'signInFirstName', name: 'firstName', type: 'text', placeholder: 'Your firstname', required })
-                    +field({ class: 'signInFormInput col-8', id: 'signInEmail', name: 'emailSignIn', type: 'email', placeholder: 'Your email', required })
-                    +field({ class: 'signInFormInput col-8', id: 'signInPass', name: 'passwordSignIn', type: 'password', placeholder: 'Your password', required })
-                    +field({ class: 'signInFormInput col-8 btn-info', id: 'signInBtn', name: 'signin', type: 'submit' })
-                  .signup-image
-                    figure
-                      img(src='../images/signin-image.jpg', alt='sing in image', id='signInImg')
-                  .form-group
-                  a#createAccountLink.signup-image-link(href='#') Create an account
-                #adminConfirm
-                  if adminConfirm
-                    h2#adminConfirm #{messageSignin}
-                  else
-                    h2.red #{messageSignin}
+    type=args.type ? args.type : noDisplay
+    name=args.name ? args.name : noDisplay
+    value=args.value ? args.value : noDisplay
+    placeholder=args.placeholder ? args.placeholder : noDisplay
+    class=args.class ? args.class : noDisplay
+    required=args.isRequired
+    id=args.id ? args.id : noDisplay)

@@ -246,7 +246,7 @@ a {
 .signUpFormInput {
   margin-top: 10px;
   margin-bottom: 5px!important;
-  width: 100% !important;
+  width: 50% !important;
   margin-left: 2%;
   margin-right: 0px;
 }
@@ -295,10 +295,9 @@ a {
 }
 
 .signInFormInput {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 5px!important;
-  width: 100% !important;
-  margin-left: 30%;
+  margin-left: 40%;
   margin-right: 10px;
 }
 

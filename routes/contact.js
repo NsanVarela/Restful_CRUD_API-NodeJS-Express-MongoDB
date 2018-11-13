@@ -37,19 +37,12 @@ router.get('/signin', function (req, result) {
     email: req.query.emailSignIn,
     password: req.query.passwordSignIn,
   };
-  //findOneUserInfo
   findOneUserInfo(contact).then(val => {
     result.render('index', {
       messageLogg: 'Bonjour ' + val.firstName,
       confirmlog: true
     })
   })
-  // findOneContact(contact).then(val => {
-  //   result.render('index', {
-  //     messageLogg: 'Bonjour ' + val.firstName,
-  //     confirmlog: true
-  //   })
-  // })
 });
 
 router.get('/user', function (req, result, next) {
@@ -57,9 +50,8 @@ router.get('/user', function (req, result, next) {
     _id: new ObjectId(req.query._id)
   };
   findOneContact(user).then(val => {
-    console.log("val=", val);
     result.render('update', {
-      contacts: val
+      contact: val
     })
   })
 });
@@ -70,7 +62,7 @@ router.get('/delete', function (req, result) {
   };
   deleteContact(user).then(val => {
     result.render('contact', {
-      contacts: val
+      contact: val
     })
   })
 });
