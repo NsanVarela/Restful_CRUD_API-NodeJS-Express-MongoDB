@@ -1,0 +1,112 @@
+#infoContainer.oddContainer.col-12
+  .containerTitle TUTORIEL
+  #accordionExample.accordion
+    .card
+      #headingOne.card-header
+        h5.mb-0
+          button.btn.btn-link(type='button', data-toggle='collapse', data-target='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
+            | Installation de Node JS
+      #collapseOne.collapse.show(aria-labelledby='headingOne', data-parent='#accordionExample')
+        .card-body
+          | Créez un repertoire vide appelé "projects"
+          br
+          br
+          | Lancez les commandes suivantes 
+          br
+          | Linux et Mac:
+          br
+          .codePart
+            | $ mkdir ~/projects
+            br
+            | $ cd ~/projects
+          br
+          | Windows CMD:
+          br
+          .codePart
+            | > mkdir %USERPROFILE%\projects
+            br
+            | > cd %USERPROFILE%\projects
+          br
+          | Windows PowerShell:
+          br
+          .codePart
+            | > mkdir $env:USERPROFILE\projects
+            br
+            | > cd $env:USERPROFILE\projects
+          br
+          | Ensuite, créez un nouveau fichier source dans le dossier projets et appelez-le hello-world.js.
+          br
+          | Dans Node.js, il est considéré comme un bon style d'utiliser des tirets (-) ou des soulignements (_) pour séparer plusieurs mots dans les noms de fichiers.
+          br
+          | Ouvrez hello-world.js dans n'importe quel éditeur de texte préféré et collez-le dans le contenu suivant.
+          br
+          br
+          .codePart
+            | const http = require('http');
+            br
+            br
+            | const hostname = '127.0.0.1';
+            br
+            | const port = 3000;
+            br
+            br
+            | const server = http.createServer((req, res) => {
+            br
+            |  res.statusCode = 200;
+            br
+            |  res.setHeader('Content-Type', 'text/plain');
+            br
+            |  res.end('Hello World!\n');
+            br
+            | });
+            br
+            br
+            | server.listen(port, hostname, () => {
+            br
+            |  console.log(`Server running at http://${hostname}:${port}/`);
+            br
+            | });
+          br
+          | Sauvegardez le fichier, revenez à la fenêtre du terminal et entrez la commande suivante :
+          br
+          .codePart
+            | $ node hello-world.js
+          br
+          | Une sortie comme celle-ci devrait apparaître dans le terminal pour indiquer que le serveur Node.js est en cours d'exécution :
+          br
+          .codePart
+            | Server running at http://127.0.0.1:3000/
+          br
+          | Maintenant, ouvrez n'importe quel navigateur Web préféré et visitez http://127.0.0.1:3000.
+          br
+          br
+          | Si le navigateur affiche la chaîne Hello, world !, cela indique que le serveur fonctionne.
+    .card
+      #headingTwo.card-header
+        h5.mb-0
+          button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+            | Déclaration des dépendances
+      #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordionExample')
+        .card-body
+          | Généralement lorsqu’on travail sur un projet, il arrive un moment ou il faut quitter l’environnement de dev et si on a des dépendances, il va falloir les faire suivre. Plutôt que de les copier à la main, ce qui en plus polluerait complètement un gestionnaire de source, on va utiliser la gestion des dépendances de npm. C’est exactement le même principe que pour les autres langages qui utilisent des gestionnaires de paquet.
+          | Npm distingue principalement deux types de dépendances : production et développement. Ces dépendances sont renseignées sous forme d’objet dans le fichier package.json.
+
+          .codePart
+            | "bootstrap": "~4.0.0",
+            br
+            | "cookie-parser": "~1.4.3",
+            br
+            | "debug": "~2.6.9",
+            br
+            | "express": "~4.16.0",
+            br
+            | "http-errors": "~1.6.2",
+            br
+            | "jquery": "^3.3.1",
+            br
+            | "morgan": "~1.9.0",
+            br
+            | "pug": "2.0.0-beta11"
+            br
+          | La commande install accepte un dossier contenant un fichier package.json.
+          | Lorsque vous faites npm install à la racine de votre projet, c’est comme si vous faisiez un npm install ./ et toutes les dépendances nécessaires vont s’installer.

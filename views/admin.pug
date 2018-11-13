@@ -1,0 +1,27 @@
+extends ./component/layout
+
+block content
+  include ./component/form.pug
+
+  section.adminContainer
+    .container
+    if confirmlog
+      #adminManageBlock
+        h2.formTitleAdmin ADMIN BOARD
+        p.descriptionLogin Choose your management option
+        #confirmlog
+        if confirmlog
+          h2#confirmloggApp(style='font-size: 16px; font-weight: bold; color: green') #{messageLogg}
+        button#showContactBtn.btn.btn-info(onclick="location.href='http://localhost:3000/contact'", data-message='Voir les contacts') Voir les contacts
+    else
+      h2.red(style='font-size: 16px; font-weight: bold; color: red') #{messageLogg}
+      #loginAdminBlock
+        .signin-form
+        h2.formTitleAdmin ADMIN
+        p.descriptionLogin Please sign in to get access
+        form(action='/admin', method='POST')
+          +field({ class: 'adminFormInput col-6', id: 'firstnameInputAdmin', name: 'firstname', type: 'text', required, placeholder: 'Your firstname' })
+          +field({ class: 'adminFormInput col-6', id: 'usernameInputAdmin', name: 'username', type: 'text', required, placeholder: 'Your email' })
+          +field({ class: 'adminFormInput col-6', id: 'passwordInputAdmin', name: 'password', type: 'password', required, placeholder: 'Your password' })
+          +field({ class: 'adminFormInput btn btn-info col-6', id: 'submitInputAdmin', type: 'submit', value: 'Submit'})
+                    

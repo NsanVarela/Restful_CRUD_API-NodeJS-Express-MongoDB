@@ -25,7 +25,7 @@ const bodyParser = require('body-parser');
 
 router.get('/', function (req, result, next) {
   findContactWithLimit(20).then(val => {
-    result.render('admin/contact', {
+    result.render('contact', {
       contacts: val
     })
   })
@@ -58,7 +58,7 @@ router.get('/user', function (req, result, next) {
   };
   findOneContact(user).then(val => {
     console.log("val=", val);
-    result.render('admin/update', {
+    result.render('update', {
       contacts: val
     })
   })
@@ -69,7 +69,7 @@ router.get('/delete', function (req, result) {
     _id: new ObjectId(req.query._id)
   };
   deleteContact(user).then(val => {
-    result.render('admin/contact', {
+    result.render('contact', {
       contacts: val
     })
   })
@@ -82,7 +82,7 @@ router.post('/', function (req, res) {
     email: req.body.email
   };
   addContact(user).then(val => {
-    res.render('admin/contact', {
+    res.render('contact', {
       contacts: val
     })
   })
@@ -100,7 +100,7 @@ router.post('/update', function (req, result) {
     }
   };
   updateContact(user, userUpdated).then(val => {
-    result.render('admin/contact', {
+    result.render('contact', {
       contacts: val
     })
   })
