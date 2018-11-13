@@ -62,7 +62,7 @@ router.get('/delete', function (req, result) {
   };
   deleteContact(user).then(val => {
     result.render('contact', {
-      contact: val
+      contacts: val
     })
   })
 });

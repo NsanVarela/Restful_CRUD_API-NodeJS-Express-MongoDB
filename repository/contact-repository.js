@@ -51,7 +51,7 @@ const deleteContact = function (user) {
     });
 }
 
-const addContact = function (contact) {
+const addContact = function (user) {
     return new Promise((resolve, reject) => {
         MongoClient.connect(mongoUrl, {
             useNewUrlParser: true
@@ -74,7 +74,7 @@ const updateContact = function (user, userUpdated) {
             dbo.collection(contact).updateOne(user, userUpdated, function (err, res) {
                 db.close();
             });
-            dbo.collection(contact).find({}).limit(10).toArray(function (err, res) {
+            dbo.collection(contact).find({}).limit(20).toArray(function (err, res) {
                 db.close();
                 resolve(res);
             });

@@ -10,7 +10,7 @@ block content
       p.descriptionFormContact.col-12 Laissez vos coordonnées pour conseillé sur le package qu'il vous faut 
     form.form.contactForm(action='/', method='POST')
       .col-12
-        +field({ label: 'Firstname', id: 'inputFirstName4', name: 'firstname', type: '', value: '', placeholder: 'Your firstname' })
+        +field({ label: 'Firstname', id: 'inputFirstName4', name: 'firstname', type: 'text', value: '', placeholder: 'Your firstname' })
         +field({ isRequired:true, label: 'Lastname', id: 'inputLastName4', name: 'lastname', type: 'text', value: '', placeholder: 'Your lastname' })
         +field({ label: 'Email', id: 'inputEmail4', name: 'email', type: 'email', value: '', placeholder: 'Your email' })
         +field({ class: 'btn btn-info',  label: 'ENVOYER', id: 'sendContact', type: 'submit'})
@@ -20,52 +20,52 @@ block content
         else
           h2.red #{message}
 
-        #signInModal.modal.fade.bd-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-                .modal-dialog.modal-xl
-                  .modal-content
-                    .main
-                    //- Sign up form (s'inscrire)
-                    section#signupSection.signup 
-                      .container
-                        .signup-content
-                          .signup-form
-                            h2#signUpTitle Sign up
-                            form.form-title-signup(action='/contact/signup', method='POST')
-                              .row#blockSignup
-                                .col-12
-                                  input.form-control.signUpFormInput(type='text', name='firstName', id='signUpFirstName', placeholder='Your firstname', value='', required)
-                                .col-12
-                                  input.form-control.signUpFormInput(type='text', name='lastName',  id='signUpLastName', placeholder='Your lastname', value='', required)
-                                .col-12
-                                  input.form-control.signUpFormInput(type='email', name='email',  id='signUpEmail', placeholder='Your email', value='', required)
-                                .col-12
-                                  input.form-control.signUpFormInput(type='password', name='password', id='signUpPass', placeholder='Your password', value='', required)
-                                .col-12
-                                  input.form-control.signUpFormInput(type='password', name='confirmPassword', id='signUpConfirmPass', placeholder='Repeat your password', value='', required)
-                                  span#messagePassword
-                                .col-12
-                                  input#signupBtn.signUpFormInput.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
-                                .signup-image
-                                  figure
-                                    img(src='images/signup-image.jpg', alt='sing up image', id='signUpImg')
-                                a#signinAccountLink.signin-image-link(href='#') I am already member
-                    //- Sing in  Form (s'identifier)
-                    section#signinSection.signin
-                      .container
-                        .signin-content
-                          .signin-form
-                            h2#signInTitle Sign in
-                                    form.form-title-signin(action='/contact/signin', method='GET')
-                                      .row#blockSignin
-                                        .col-8
-                                          input.form-control.signInFormInput(type='text', name='firstName', id='signInFirstName', placeholder='Your firstname', value='', required)
-                                        .col-8
-                                          input.form-control.signInFormInput(type='email', name='emailSignIn',  id='signInEmail', value='', placeholder='Your email', required)
-                                        .col-8
-                                          input.form-control.signInFormInput(type='password', name='passwordSignIn', id='signInPass', value='', placeholder='Your password', required)
-                                        .col-8
-                                          input#signinBtn.form-control.signInFormInput.form-submit.btn.btn-success(type='submit', name='signin', value='Login')
-                                        .signup-image
-                                          figure
-                                            img(src='../images/signin-image.jpg', alt='sing in image', id='signInImg')
-                                        a#createAccountLink.signup-image-link(href='#') Create an account
+  #signInModal.modal.fade.bd-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+          .modal-dialog.modal-xl
+            .modal-content
+              .main
+              //- Sign up form (s'inscrire)
+              section#signupSection.signup 
+                .container
+                  .signup-content
+                    .signup-form
+                      h2#signUpTitle Sign up
+                      form.form-title-signup(action='/contact/signup', method='POST')
+                        .row#blockSignup
+                          .col-12
+                            input.form-control.signUpFormInput(type='text', name='firstName', id='signUpFirstName', placeholder='Your firstname', value='', required)
+                          .col-12
+                            input.form-control.signUpFormInput(type='text', name='lastName',  id='signUpLastName', placeholder='Your lastname', value='', required)
+                          .col-12
+                            input.form-control.signUpFormInput(type='email', name='email',  id='signUpEmail', placeholder='Your email', value='', required)
+                          .col-12
+                            input.form-control.signUpFormInput(type='password', name='password', id='signUpPass', placeholder='Your password', value='', required)
+                          .col-12
+                            input.form-control.signUpFormInput(type='password', name='confirmPassword', id='signUpConfirmPass', placeholder='Repeat your password', value='', required)
+                            span#messagePassword
+                          .col-12
+                            input#signupBtn.signUpFormInput.form-submit.btn.btn-success(type='submit', name='signup', value='Register')
+                          .signup-image
+                            figure
+                              img(src='images/signup-image.jpg', alt='sing up image', id='signUpImg')
+                          a#signinAccountLink.signin-image-link(href='#') I am already member
+              //- Sing in  Form (s'identifier)
+              section#signinSection.signin
+                .container
+                  .signin-content
+                    .signin-form
+                      h2#signInTitle Sign in
+                              form.form-title-signin(action='/contact/signin', method='GET')
+                                .row#blockSignin
+                                  .col-8
+                                    input.form-control.signInFormInput(type='text', name='firstName', id='signInFirstName', placeholder='Your firstname', value='', required)
+                                  .col-8
+                                    input.form-control.signInFormInput(type='email', name='emailSignIn',  id='signInEmail', value='', placeholder='Your email', required)
+                                  .col-8
+                                    input.form-control.signInFormInput(type='password', name='passwordSignIn', id='signInPass', value='', placeholder='Your password', required)
+                                  .col-8
+                                    input#signinBtn.form-control.signInFormInput.form-submit.btn.btn-success(type='submit', name='signin', value='Login')
+                                  .signup-image
+                                    figure
+                                      img(src='../images/signin-image.jpg', alt='sing in image', id='signInImg')
+                                  a#createAccountLink.signup-image-link(href='#') Create an account
